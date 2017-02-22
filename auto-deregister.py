@@ -1,3 +1,9 @@
+# -*- coding: UTF-8 -*-
+#
+# Author: Raphael Rabelo de Oliveira
+# Website: http://rabelo.ninja
+# Github: http://github.com/rabeloo
+#
 import boto3, re, sys
 from zabbix_api import ZabbixAPI
 from datetime import datetime
