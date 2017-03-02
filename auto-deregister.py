@@ -12,6 +12,7 @@ from datetime import datetime
 ZABBIX_SERVER_URL = 'http://url.to.zabbix'
 ZABBIX_API_USER = '<SET_USER>'
 ZABBIX_API_PASSWORD = '<SET PASSWORD>'
+ZABBIX_GROUP_ID = '182'
 
 # Set the SQS endpoint url to read messages
 queueUrl='<SET_SQS_ENDPOINT>'
@@ -41,7 +42,7 @@ def zabbix(instList, masHandle):
     zapi.login(ZABBIX_API_USER, ZABBIX_API_PASSWORD)
     for instId in instList:
          if re.match('i-[a-z0-9]{8,17}', instId) is not None:
-            hostInfo = zapi.host.get({ "output": ["host"], "groupids": "182", "selectInventory": ["tag"], "searchInventory": { "tag": instId }})
+            hostInfo = zapi.host.get({ "output": ["host"], "groupids": ZABBIX_GROUP_ID, "selectInventory": ["tag"], "searchInventory": { "tag": instId }})
          else:
             print "[%s] The value (%s) doesn't match with instance-id pattern" % (eventDate(), instId)
             sys.exit(0)
